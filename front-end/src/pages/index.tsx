@@ -1,25 +1,42 @@
-import Button from '@/components/base/Button';
-import apiClient from '@/lib/api/apiClient';
-import { GetSongsTypes, WakmuSongs } from '@/lib/api/types';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import { Inter } from 'next/font/google';
+import { GetSongsTypes, WakmuSongs } from '@/lib/api/types';
+import FeatureList from '@/components/common/FeatureList';
+import apiClient from '@/lib/api/apiClient';
+import { Button } from '@/components/base';
 
 export interface HomeProps {
   songs: WakmuSongs[];
   features: string[];
 }
 
-export default function Home({ songs, features }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Home({
+  songs,
+  features,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
-    <>
-      <h1>왁뮤에서 알맞은 노래를 찾아보세요.</h1>
-      <Button name="test" isSelected={true} />
-    </>
+    <section>
+      <h1 className="text-center pb-8 max-[480px]:pb-4">
+        마음에 드는 태그를 선택하세요!
+        <br />
+        선택한 태그에 맞게 노래를 추천해드립니다.
+      </h1>
+      <FeatureList features={features} />
+      <div className='w-full flex justify-center pt-8'>
+        <Button name="노래 찾기" buttonType="submit" />
+      </div>
+    </section>
   );
 }
 
-export const getServerSideProps: GetServerSideProps<GetSongsTypes> = async () => {
-  const response = await apiClient.get<GetSongsTypes>('api/songs');
+export const getServerSideProps: GetServerSideProps<
+  GetSongsTypes
+> = async () => {
+  const { data } = await apiClient.get<GetSongsTypes>('api/songs');
 
-  return { props: { songs: response.data.songs, features: response.data.features } };
+  return {
+    props: {
+      songs: data.songs,
+      features: data.features,
+    },
+  };
 };
