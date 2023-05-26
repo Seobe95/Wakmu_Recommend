@@ -9,13 +9,20 @@ interface ButtonProps {
   onClick?: () => void;
   featuresHandler?: (value: string) => void;
 }
-export default function Button({ name, buttonType, featuresHandler }: ButtonProps) {
-  const { isButtonType, handleButtonType } = useButton({ type: buttonType || 'noneSelect' });
+export default function Button({
+  name,
+  buttonType,
+  featuresHandler,
+  onClick,
+}: ButtonProps) {
+  const { isButtonType, handleButtonType } = useButton({
+    type: buttonType || 'noneSelect',
+  });
   const buttonVariants = {
     select:
-      'bg-green-300 hover:bg-green-400 border border-green-300 hover:border-green-400 px-3 py-1',
-    noneSelect: 'bg-white hover:bg-green-200 border border-green-200 px-3 py-1',
-    submit: 'bg-green-400 px-6 py-2 text-white hover:bg-green-300',
+      'bg-green-500 border border-green-500 hover:border-green-300 hover:bg-green-300 px-3 py-1 text-white max-[480px]:px-1',
+    noneSelect: 'bg-white hover:bg-green-200 border border-green-200 px-3 py-1 max-[480px]:px-1',
+    submit: 'bg-green-600 px-6 py-2 text-white hover:bg-green-500 max-[480px]:w-full',
   };
 
   return (
@@ -25,8 +32,11 @@ export default function Button({ name, buttonType, featuresHandler }: ButtonProp
         buttonVariants[isButtonType || 'submit']
       } rounded-lg transition-colors select-none`}
       onClick={() => {
-        if(featuresHandler) {
-          featuresHandler(name)
+        if (featuresHandler) {
+          featuresHandler(name);
+        }
+        if (onClick) {
+          onClick();
         }
         handleButtonType({ type: isButtonType });
       }}

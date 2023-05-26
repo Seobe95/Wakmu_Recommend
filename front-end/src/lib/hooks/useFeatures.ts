@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { GetSongsTypes } from '../api/types';
+import { AxiosError } from 'axios';
+import apiClient from '../api/apiClient';
 
 export const useFeatures = () => {
   const [features, setFeatures] = useState<string[]>([]);
@@ -10,5 +13,18 @@ export const useFeatures = () => {
     setFeatures((prev) => [...prev, feature]);
   };
 
-  return { featuresHandler };
+  async function getFeaturesHandler(): Promise<{
+    data?: GetSongsTypes;
+    error?: string;
+  }> {
+    try {
+      const { data } = await apiClient.get<GetSongsTypes>('/api/songs');
+      return { data };
+    } catch (e) {
+      const error = e as AxiosError;
+      return { error: error.message };
+    }
+  }
+
+  return { featuresHandler, getFeaturesHandler };
 };
