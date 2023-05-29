@@ -18,7 +18,11 @@ export default function FeatureList({ features }: FeatureListProps) {
               <Button
                 name={item}
                 key={index}
-                featuresHandler={(value) => featuresHandler(value)}
+                featuresValue={item}
+                onClick={(value) => {
+                  featuresHandler(value as string);
+                }}
+                buttonType='noneSelect'
               />
             </li>
           );
