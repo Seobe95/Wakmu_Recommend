@@ -22,24 +22,6 @@ const songsCtrl = {
       ctx.throw([500, e]);
     }
   },
-  // insertData: async () => {
-  //   try {
-  //     const jsonData: SongType[] = require('./wakmu.json');
-
-  //     const newData = jsonData.map(item => {
-  //       return {
-  //         ...item,
-  //         artist: item.artist[0].split(", "),
-  //         features: item.features[0].split(", "),
-  //         emotionReleted: item.features[0].split(", ")
-  //       }
-  //     });
-
-  //     await Songs.insertMany(newData)
-  //   } catch (e) {
-  //     console.error(e)
-  //   }
-  // }
 };
 
 export default songsCtrl;
