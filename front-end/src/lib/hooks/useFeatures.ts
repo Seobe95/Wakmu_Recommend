@@ -13,7 +13,7 @@ export const useFeatures = () => {
     setFeatures((prev) => [...prev, feature]);
   };
 
-  async function getFeaturesHandler(): Promise<{
+  async function postFeaturesHandler(): Promise<{
     data?: GetSongsTypes;
     error?: string;
   }> {
@@ -26,5 +26,5 @@ export const useFeatures = () => {
     }
   }
 
-  return { featuresHandler, getFeaturesHandler };
+  return { featuresHandler, postFeaturesHandler };
 };

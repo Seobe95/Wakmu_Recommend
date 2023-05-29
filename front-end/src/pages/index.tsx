@@ -19,7 +19,7 @@ export default function Home({
   data,
   error,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const {getFeaturesHandler} = useFeatures();
+  const {featuresHandler} = useFeatures();
   return (
     <section className='w-full'>
       {data && (
