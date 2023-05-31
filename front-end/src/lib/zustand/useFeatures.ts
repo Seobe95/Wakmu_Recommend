@@ -13,10 +13,15 @@ const useFeatures = create<FeatureState>()(
       set((state) => {
         if (state.features.includes(feature)) {
           return {
+            ...state,
             features: state.features.filter((item) => item !== feature),
           };
+        } else {
+          if (state.features.length < 5) {
+            return { ...state, features: [...state.features, feature] };
+          }
+          return { ...state };
         }
-        return { features: [...state.features, feature] };
       });
     },
   })),

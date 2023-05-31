@@ -22,7 +22,7 @@ export const useButton = ({ type }: ButtonType) => {
     setButtonType(typeMapping[type]);
 
     if (callback) {
-      callback;
+      callback();
     }
   };
 

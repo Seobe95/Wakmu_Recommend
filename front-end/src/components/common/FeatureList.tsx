@@ -6,7 +6,10 @@ interface FeatureListProps {
 }
 
 export default function FeatureList({ features }: FeatureListProps) {
-  const addOrRemoveFeeature = useFeatures((state) => state.addOrRemoveFeature);
+  const { addOrRemoveFeeature } = useFeatures((state) => ({
+    addOrRemoveFeeature: state.addOrRemoveFeature,
+  }));
+
   return (
     <div>
       <ul className="flex flex-wrap space-x-2 space-y-2 mr-2 justify-center">
