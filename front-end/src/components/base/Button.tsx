@@ -1,6 +1,5 @@
-import { useButton } from '@/lib/hooks/useButton';
 import useFeatures from '@/lib/zustand/useFeatures';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 
 export interface ButtonType {
   type?: 'select' | 'noneSelect' | 'submit';
@@ -18,9 +17,6 @@ export default function Button({
   featuresValue,
   onClick,
 }: ButtonProps) {
-  // const { isButtonType, handleButtonType } = useButton({
-  //   type: buttonType,
-  // });
 
   const [buttonTypes, setButtonType] = useState<
     'select' | 'noneSelect' | 'submit'
