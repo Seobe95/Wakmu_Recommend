@@ -1,11 +1,11 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { GetSongsTypes, WakmuSongs } from '@/lib/api/types';
-import FeatureList from '@/components/common/FeatureList';
+import { FeatureList } from '@/components/common';
 import apiClient from '@/lib/api/apiClient';
 import { Button } from '@/components/base';
-import { Axios, AxiosError, isAxiosError } from 'axios';
-import { error } from 'console';
-import { useFeatures } from '@/lib/hooks/useFeatures';
+import { isAxiosError } from 'axios';
+import useFeatures from '@/lib/zustand/useFeatures';
+import { shallow } from 'zustand/shallow';
 
 export interface HomeProps {
   data?: {
@@ -19,9 +19,13 @@ export default function Home({
   data,
   error,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const {getFeaturesHandler} = useFeatures();
+  const { features } = useFeatures(
+    (state) => ({ features: state.features }),
+    shallow,
+  );
+
   return (
-    <section className='w-full'>
+    <section className="w-full">
       {data && (
         <>
           <h1 className="text-center pb-8 max-[480px]:pb-4">
@@ -29,18 +33,33 @@ export default function Home({
             <br />
             선택한 태그에 맞게 노래를 추천해드립니다.
           </h1>
+          {features.length === 5 && (
+            <p className="text-center text-red-400">
+              태그는 최대 5개까지 선택 가능합니다.
+            </p>
+          )}
           <FeatureList features={data.features} />
           <div className="w-full flex justify-center pt-8">
-            <Button name="노래 찾기" buttonType="submit" />
+            <Button
+              name="노래 찾기"
+              buttonType="submit"
+              onClick={() => {
+                console.log(features);
+              }}
+            />
           </div>
         </>
       )}
       {error && (
         <div className="text-center">
-          <p className='pb-8'>에러가 발생하였습니다.</p>
-          <Button buttonType='submit' name="다시 시도하기" onClick={() => {
-            window.location.reload();
-          }} />
+          <p className="pb-8">에러가 발생하였습니다.</p>
+          <Button
+            buttonType="submit"
+            name="다시 시도하기"
+            onClick={() => {
+              window.location.reload();
+            }}
+          />
         </div>
       )}
     </section>

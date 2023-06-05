@@ -1,13 +1,14 @@
-import { useFeatures } from '@/lib/hooks/useFeatures';
+import useFeatures from '@/lib/zustand/useFeatures';
 import { Button } from '../base';
-import { useButton } from '@/lib/hooks/useButton';
 
 interface FeatureListProps {
   features: string[];
 }
 
 export default function FeatureList({ features }: FeatureListProps) {
-  const { featuresHandler } = useFeatures();
+  const { addOrRemoveFeeature } = useFeatures((state) => ({
+    addOrRemoveFeeature: state.addOrRemoveFeature,
+  }));
 
   return (
     <div>
@@ -18,7 +19,11 @@ export default function FeatureList({ features }: FeatureListProps) {
               <Button
                 name={item}
                 key={index}
-                featuresHandler={(value) => featuresHandler(value)}
+                featuresValue={item}
+                onClick={(value) => {
+                  addOrRemoveFeeature(value as string);
+                }}
+                buttonType="noneSelect"
               />
             </li>
           );

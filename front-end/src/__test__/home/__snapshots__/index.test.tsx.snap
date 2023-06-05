@@ -2,8 +2,52 @@
 
 exports[`Home renders homepage unchanged 1`] = `
 <div>
-  <h1>
-    왁뮤에서 알맞은 노래를 찾아보세요.
-  </h1>
+  <section
+    class="w-full"
+  >
+    <h1
+      class="text-center pb-8 max-[480px]:pb-4"
+    >
+      마음에 드는 태그를 선택하세요!
+      <br />
+      선택한 태그에 맞게 노래를 추천해드립니다.
+    </h1>
+    <div>
+      <ul
+        class="flex flex-wrap space-x-2 space-y-2 mr-2 justify-center"
+      >
+        <li
+          class="first:mt-2 first:ml-2"
+        >
+          <button
+            class="bg-white hover:bg-green-200 border border-green-200 px-3 py-1 max-[480px]:px-1 rounded-lg transition-colors select-none "
+            type="button"
+          >
+            사랑
+          </button>
+        </li>
+        <li
+          class="first:mt-2 first:ml-2"
+        >
+          <button
+            class="bg-white hover:bg-green-200 border border-green-200 px-3 py-1 max-[480px]:px-1 rounded-lg transition-colors select-none "
+            type="button"
+          >
+            슬픔
+          </button>
+        </li>
+      </ul>
+    </div>
+    <div
+      class="w-full flex justify-center pt-8"
+    >
+      <button
+        class="bg-green-600 px-6 py-2 text-white hover:bg-green-500 max-[480px]:w-full rounded-lg transition-colors select-none "
+        type="button"
+      >
+        노래 찾기
+      </button>
+    </div>
+  </section>
 </div>
 `;
