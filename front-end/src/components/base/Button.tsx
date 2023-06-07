@@ -10,12 +10,14 @@ interface ButtonProps {
   buttonType: 'select' | 'noneSelect' | 'submit';
   featuresValue?: string;
   onClick?: (value?: string) => void;
+  disable?: boolean;
 }
 export default function Button({
   name,
   buttonType = 'noneSelect',
   featuresValue,
   onClick,
+  disable = false,
 }: ButtonProps) {
   const [buttonTypes, setButtonType] = useState<
     'select' | 'noneSelect' | 'submit'
@@ -62,6 +64,7 @@ export default function Button({
       type="button"
       className={`${buttonVariants[buttonTypes]} rounded-lg transition-colors select-none `}
       onClick={buttonClickHandler}
+      disabled={disable}
     >
       {name}
     </button>

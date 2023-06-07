@@ -23,7 +23,6 @@ export default function Home({
     (state) => ({ features: state.features }),
     shallow,
   );
-
   return (
     <section className="w-full">
       {data && (
@@ -43,6 +42,7 @@ export default function Home({
             <Button
               name="노래 찾기"
               buttonType="submit"
+              disable={features.length === 0}
               onClick={() => {
                 console.log(features);
               }}
