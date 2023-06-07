@@ -55,3 +55,7 @@ body {
   -ms-overflow-style: none;
   /* For Internet Explorer and Edge */
 }
+
+.youtube {
+  border-radius: 4px;
+}

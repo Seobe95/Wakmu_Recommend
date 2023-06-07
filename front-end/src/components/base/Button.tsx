@@ -17,7 +17,6 @@ export default function Button({
   featuresValue,
   onClick,
 }: ButtonProps) {
-
   const [buttonTypes, setButtonType] = useState<
     'select' | 'noneSelect' | 'submit'
   >(buttonType);
