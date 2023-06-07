@@ -27,3 +27,35 @@ body {
 * {
   box-sizing: border-box;
 }
+
+.swiper-3d .swiper-slide-shadow {
+  background: none !important;
+}
+
+.swiper-3d .swiper-slide-shadow-left {
+  background-image: none !important;
+}
+
+.swiper-3d .swiper-slide-shadow-right {
+  background-image: none !important;
+}
+
+.swiper-3d .swiper-slide-shadow-top {
+  background-image: none !important;
+}
+
+.swiper-3d .swiper-slide-shadow-bottom {
+  background-image: none !important;
+}
+
+.swiper-wrapper {
+  overflow: hidden;
+  scrollbar-width: none;
+  /* For Firefox */
+  -ms-overflow-style: none;
+  /* For Internet Explorer and Edge */
+}
+
+.youtube {
+  border-radius: 4px;
+}

@@ -1,6 +1,6 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { GetSongsTypes, WakmuSongs } from '@/lib/api/types';
-import FeatureList from '@/components/common/FeatureList';
+import { FeatureList } from '@/components/common';
 import apiClient from '@/lib/api/apiClient';
 import { Button } from '@/components/base';
 import { isAxiosError } from 'axios';
@@ -33,7 +33,11 @@ export default function Home({
             <br />
             선택한 태그에 맞게 노래를 추천해드립니다.
           </h1>
-          {features.length === 5 && <p className='text-center text-red-400'>태그는 최대 5개까지 선택 가능합니다.</p>}
+          {features.length === 5 && (
+            <p className="text-center text-red-400">
+              태그는 최대 5개까지 선택 가능합니다.
+            </p>
+          )}
           <FeatureList features={data.features} />
           <div className="w-full flex justify-center pt-8">
             <Button

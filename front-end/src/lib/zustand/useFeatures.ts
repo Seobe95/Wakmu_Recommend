@@ -22,7 +22,7 @@ const useFeatures = create<FeatureState>()(
           }
           return { ...state };
         }
-      });
+      }, false, "addOrRemoveFeature");
     },
   })),
 );
