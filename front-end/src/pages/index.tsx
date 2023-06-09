@@ -6,6 +6,8 @@ import { Button } from '@/components/base';
 import { isAxiosError } from 'axios';
 import useFeatures from '@/lib/zustand/useFeatures';
 import { shallow } from 'zustand/shallow';
+import { useRecommendSongs } from '@/lib/zustand/useRecommendSongs';
+import { useRouter } from 'next/router';
 
 export interface HomeProps {
   data?: {
@@ -23,6 +25,10 @@ export default function Home({
     (state) => ({ features: state.features }),
     shallow,
   );
+  const { postFeatures } = useRecommendSongs((state) => ({
+    postFeatures: state.postFeatures,
+  }));
+  const router = useRouter();
   return (
     <section className="w-full">
       {data && (
@@ -44,7 +50,8 @@ export default function Home({
               buttonType="submit"
               disable={features.length === 0}
               onClick={() => {
-                console.log(features);
+                postFeatures(features);
+                router.push('/result')
               }}
             />
           </div>

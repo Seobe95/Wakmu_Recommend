@@ -32,28 +32,33 @@ const songsCtrl = {
         return obj;
       }, {} as Record<string, number>);
 
-        console.log(userFeaturesObject)
+      console.log(userFeaturesObject);
 
       const temp = await Songs.find({
-        features: { $in: features }
+        features: { $in: features },
       });
-
 
       const recommendSongs = temp.map((song) => {
         let score = 0;
-        
+
         song.features.forEach((feature) => {
           if (feature in userFeaturesObject) {
             score += userFeaturesObject[feature];
           }
         });
-        
+
         return { song, score };
       });
-      
-      const result = recommendSongs.sort((a, b) => b.score - a.score).slice(0, 5);
 
-      ctx.body = { songs: result };
+      const result = recommendSongs
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 5);
+
+      ctx.body = {
+        songs: result.map((item) => {
+          return item.song;
+        }),
+      };
     } catch (e) {
       ctx.throw([500, e]);
     }
