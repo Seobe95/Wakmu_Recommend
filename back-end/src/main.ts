@@ -4,8 +4,9 @@ import api from './api';
 import bodyParser from 'koa-bodyparser';
 import 'dotenv/config';
 import mongoose from 'mongoose';
+import cors from '@koa/cors';
 
-const { PORT, MONGO_URI } = process.env;
+const { PORT, MONGO_URI, LOCAL_CLIENT_URL, DEPLOY_CLIENT_URL } = process.env;
 const app = new Koa();
 const router = new Router();
 
@@ -19,6 +20,8 @@ mongoose
   });
 
 router.use('/api', api.routes());
+
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 
 app.use(bodyParser());
 
