@@ -10,19 +10,23 @@ const useFeatures = create<FeatureState>()(
   devtools((set) => ({
     features: [],
     addOrRemoveFeature: (feature) => {
-      set((state) => {
-        if (state.features.includes(feature)) {
-          return {
-            ...state,
-            features: state.features.filter((item) => item !== feature),
-          };
-        } else {
-          if (state.features.length < 5) {
-            return { ...state, features: [...state.features, feature] };
+      set(
+        (state) => {
+          if (state.features.includes(feature)) {
+            return {
+              ...state,
+              features: state.features.filter((item) => item !== feature),
+            };
+          } else {
+            if (state.features.length < 5) {
+              return { ...state, features: [...state.features, feature] };
+            }
+            return { ...state };
           }
-          return { ...state };
-        }
-      }, false, "addOrRemoveFeature");
+        },
+        false,
+        'addOrRemoveFeature',
+      );
     },
   })),
 );
