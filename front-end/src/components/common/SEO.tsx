@@ -8,7 +8,7 @@ export default function SEO() {
       <link rel="icon" href="/favicon.png" />
       <meta name="description" content={'왁타버스의 음악들을 사용자의 선택에 따라 선곡해 드립니다.'} />
       <meta name="keywords" content={keywords} />
-      <meta property="og:site_name" content="Seobe-dev.vercel.app" />
+      <meta property="og:site_name" content="wakta_recommend.com" />
       <meta property="og:type" content="website" />
     </Head>
   );

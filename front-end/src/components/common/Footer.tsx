@@ -1,61 +1,61 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import { Icon } from '../base';
 
-interface FooterProps {}
+const footerIconArr = [
+  {
+    imageAlt: '우왁굳의 게임방송 아이콘',
+    imageSrc: '/wakdu.jpeg',
+    imageWidth: 40,
+    imageHeight: 40,
+    linkHref: 'https://www.youtube.com/@woowakgood',
+    linkTarget: '_blank',
+  },
+  {
+    imageAlt: '왁타버스 아이콘',
+    imageSrc: '/waktaverse.jpeg',
+    imageWidth: 40,
+    imageHeight: 40,
+    linkHref: 'https://www.youtube.com/@waktaverse',
+    linkTarget: '_blank',
+  },
+  {
+    imageAlt: '왁타버스 제로 아이콘',
+    imageSrc: '/wak-zero.jpeg',
+    imageWidth: 40,
+    imageHeight: 40,
+    linkHref: 'https://www.youtube.com/@wakzero',
+    linkTarget: '_blank',
+  },
+  {
+    imageAlt: '우왁굳의 돚거 아이콘',
+    imageSrc: '/dotgeo.jpeg',
+    imageWidth: 40,
+    imageHeight: 40,
+    linkHref: 'https://www.youtube.com/@wakthief',
+    linkTarget: '_blank',
+  },
+];
+
 export default function Footer() {
   return (
     <div
       className={`flex w-[768px] max-[1024px]:w-[768px] max-[768px]:w-5/6 max-[480px]:w-full bg-white justify-center pb-4 pt-8`}
     >
       <ul className="flex flex-row space-x-3 justify-center items-center">
-        <li className="first:ml-0">
-          <Link href="https://www.youtube.com/@woowakgood" target="_blank">
-            <div className="w-[40px] h-[40px] rounded-full overflow-hidden">
-              <Image
-                src={'/wakdu.jpeg'}
-                alt="우왁굳의 게임방송 아이콘"
-                width={40}
-                height={40}
+        {footerIconArr.map((item, index) => {
+          return (
+            <li className="first:ml-0 last:mr-0" key={`${item.imageAlt + index}`}>
+              <Icon
+                imageAlt={item.imageAlt}
+                imageSrc={item.imageSrc}
+                imageWidth={item.imageWidth}
+                imageHeight={item.imageHeight}
+                linkHref={item.linkHref}
+                linkTarget={item.linkTarget}
+                iconType='round'
               />
-            </div>
-          </Link>
-        </li>
-        <li>
-          <Link href="https://www.youtube.com/@waktaverse" target="_blank">
-            <div className="w-[40px] h-[40px] rounded-full overflow-hidden">
-              <Image
-                src={'/waktaverse.jpeg'}
-                alt="왁타버스 아이콘"
-                width={40}
-                height={40}
-              />
-            </div>
-          </Link>
-        </li>
-        <li>
-          <Link href="https://www.youtube.com/@wakzero" target="_blank">
-            <div className="w-[40px] h-[40px] rounded-full overflow-hidden">
-              <Image
-                src={'/wak-zero.jpeg'}
-                alt="왁타버스 제로 아이콘"
-                width={40}
-                height={40}
-              />
-            </div>
-          </Link>
-        </li>
-        <li className="last:mr-0">
-          <Link href="https://www.youtube.com/@wakthief" target="_blank">
-            <div className="w-[40px] h-[40px] rounded-full overflow-hidden">
-              <Image
-                src={'/dotgeo.jpeg'}
-                alt="우왁굳의 돚거 아이콘"
-                width={40}
-                height={40}
-              />
-            </div>
-          </Link>
-        </li>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

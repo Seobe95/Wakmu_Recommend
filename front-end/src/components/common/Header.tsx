@@ -1,8 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-interface HeaderProps {}
-
 export default function Header() {
   return (
     <header className="flex flex-row h-[50px] bg-white items-center ocerflow px-8 max-[768px]:px-4 max-[480px]:px-2">
@@ -12,15 +10,15 @@ export default function Header() {
             <Image
               src={'/title.png'}
               alt="헤더 이미지"
-              width="500"
-              height="100"
+              width="400"
+              height="200"
             />
           </div>
         </Link>
         <ul className="flex felx-row justify-center items-center space-x-4">
           <li>
             <Link href="https://www.twitch.tv/woowakgood" target="_blank">
-              <div className="w-[30px] max-[480px]:w-[25px]">
+              <div className="w-[30px] max-[500px]:w-[30px]">
                 <Image
                   src={'/dowitch.png'}
                   alt="우왁굳 트위치 방송 이동 아이콘"

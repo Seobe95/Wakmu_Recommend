@@ -44,7 +44,7 @@ export default function Home({
             </p>
           )}
           <FeatureList features={data.features} />
-          <div className="w-full flex justify-center pt-8">
+          <div className="w-full flex pt-8 justify-center">
             <Button
               name="노래 찾기"
               buttonType="submit"
@@ -75,7 +75,7 @@ export default function Home({
 
 export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
   try {
-    const { data } = await apiClient.get<GetSongsTypes>('api/songs');
+    const { data } = await apiClient.get<GetSongsTypes>('api/songs.list');
     return {
       props: {
         data: { songs: data.songs, features: data.features },

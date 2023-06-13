@@ -4,6 +4,7 @@ import { useYoutubePlayer } from '@/lib/zustand/useYoutubePlayer';
 import { useEffect, useState } from 'react';
 import Youtube, { YouTubePlayer } from 'react-youtube';
 import { Button, CardHeader, Tags } from '../base';
+import useFeatures from '@/lib/zustand/useFeatures';
 
 interface CardProps {
   videoId: string;
@@ -32,7 +33,7 @@ export default function Card({
     playPage: state.playPage,
   }));
   const [player, setPlayer] = useState<YouTubePlayer>();
-
+  const usersFeatures = useFeatures((state) => (state.features))
   useEffect(() => {
     if (playPage !== currentSwipePage) {
       player?.pauseVideo();
@@ -41,7 +42,7 @@ export default function Card({
 
   return (
     <div className="mx-auto w-[462px] pt-[50px] pb-[50px] rounded-xl max-[480px]:w-[270px] max-[480px]:mx-auto">
-      <CardHeader artists={artists} title={title} />
+      <p>{title}</p>
       <Youtube
         className="youtube"
         iframeClassName="youtube"
@@ -63,7 +64,7 @@ export default function Card({
           setPlayer(event.target);
         }}
       />
-      <Tags features={features} />
+      <Tags features={features} usersFeatures={usersFeatures}/>
       <div className='flex justify-center'>
         <Button buttonType="submit" name="이 노래에 태그 추가하기" />
       </div>

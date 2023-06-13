@@ -17,7 +17,7 @@ export const useRecommendSongs = create<RecommendSongsState>()(
     postFeatures: async (features: string[]) => {
       try {
         const { data } = await apiClient.post<{ songs: WakmuSongs[] }>(
-          '/api/songs',
+          '/api/songs.recommend',
           { features },
           {
             withCredentials: true,
@@ -33,7 +33,6 @@ export const useRecommendSongs = create<RecommendSongsState>()(
         }));
       } catch (e) {
         if (isAxiosError(e)) {
-          console.log(e);
           const error = e as AxiosError;
           set((state) => ({
             ...state,
