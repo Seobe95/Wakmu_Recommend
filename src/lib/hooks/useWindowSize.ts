@@ -8,7 +8,7 @@ interface WindowSize {
 export const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState<WindowSize>({
     width:
-      typeof window === 'undefined' ? 462 : window.innerWidth > 480 ? 462 : 270,
+      typeof window === 'undefined' ? 462 : window.innerWidth > 480 ? 462 : 350,
     height:
       (typeof window === 'undefined'
         ? 462

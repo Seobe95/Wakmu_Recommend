@@ -39,5 +39,5 @@ export const useYoutubePlayer = create<PlayerState>()(
         playState,
       }), false, "Pause_Music");
     },
-  })),
+  }), {name: "youtube store"}),
 );

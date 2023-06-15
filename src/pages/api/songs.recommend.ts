@@ -14,6 +14,7 @@ export default async function handler(
 ) {
   const { method } = req;
   const supportMethod = ['POST'];
+
   try {
     checkSupportMethod(supportMethod, method);
     await songsCtrl.recommend(req, res);

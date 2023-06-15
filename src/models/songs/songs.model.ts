@@ -21,7 +21,7 @@ async function recommend({
     }
   });
 
-  const songs = songCollection.toArray();
+  const songs = await songCollection.toArray();
   return songs
 }
 

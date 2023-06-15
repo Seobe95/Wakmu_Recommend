@@ -14,5 +14,5 @@ export const useSwipeSlider = create<ISwiper>()(
         return { ...state, currentFocusPage: page };
       }, false, "setCurrentFocusPage");
     },
-  })),
+  }), {name: "swiper store"}),
 );

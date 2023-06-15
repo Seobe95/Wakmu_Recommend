@@ -28,7 +28,7 @@ const useFeatures = create<FeatureState>()(
         'addOrRemoveFeature',
       );
     },
-  })),
+  }), {name: "useFeatures"}),
 );
 
 export default useFeatures;
