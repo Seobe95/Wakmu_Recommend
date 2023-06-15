@@ -3,8 +3,9 @@ import { useSwipeSlider } from '@/lib/zustand/useSwipeSlider';
 import { useYoutubePlayer } from '@/lib/zustand/useYoutubePlayer';
 import { useEffect, useState } from 'react';
 import Youtube, { YouTubePlayer } from 'react-youtube';
-import { Button, CardHeader, Tags } from '../base';
+import { Button, Tags } from '../base';
 import useFeatures from '@/lib/zustand/useFeatures';
+import { useSongsModal } from '@/lib/zustand/useSongModal';
 
 interface CardProps {
   videoId: string;
@@ -33,7 +34,10 @@ export default function Card({
     playPage: state.playPage,
   }));
   const [player, setPlayer] = useState<YouTubePlayer>();
-  const usersFeatures = useFeatures((state) => (state.features))
+  const usersFeatures = useFeatures((state) => state.features);
+  const { setIsModalOpen } = useSongsModal((state) => ({
+    setIsModalOpen: state.setIsOpen,
+  }));
   useEffect(() => {
     if (playPage !== currentSwipePage) {
       player?.pauseVideo();
@@ -41,8 +45,8 @@ export default function Card({
   }, [currentSwipePage]);
 
   return (
-    <div className="mx-auto w-[462px] pt-[50px] pb-[50px] rounded-xl max-[480px]:w-[270px] max-[480px]:mx-auto">
-      <p>{title}</p>
+    <div className="mx-auto w-[462px] pt-[50px] pb-[50px] rounded-xl max-[480px]:w-full max-[480px]:mx-auto bg-slate-50">
+      <p className="text-center text-lg">{title}</p>
       <Youtube
         className="youtube"
         iframeClassName="youtube"
@@ -64,9 +68,13 @@ export default function Card({
           setPlayer(event.target);
         }}
       />
-      <Tags features={features} usersFeatures={usersFeatures}/>
-      <div className='flex justify-center'>
-        <Button buttonType="submit" name="이 노래에 태그 추가하기" />
+      <Tags features={features} usersFeatures={usersFeatures} />
+      <div className="flex justify-center">
+        <Button
+          buttonType="submit"
+          name="이 노래에 태그 추가하기"
+          onClick={() => setIsModalOpen(true)}
+        />
       </div>
     </div>
   );

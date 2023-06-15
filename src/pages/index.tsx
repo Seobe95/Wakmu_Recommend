@@ -11,7 +11,6 @@ import { useRouter } from 'next/router';
 
 export interface HomeProps {
   data?: {
-    songs: WakmuSongs[];
     features: string[];
   };
   error?: string;
@@ -29,6 +28,7 @@ export default function Home({
     postFeatures: state.postFeatures,
   }));
   const router = useRouter();
+
   return (
     <section className="w-full">
       {data && (
@@ -78,7 +78,7 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
     const { data } = await apiClient.get<GetSongsTypes>('api/songs.list');
     return {
       props: {
-        data: { songs: data.songs, features: data.features },
+        data: { features: data.features },
       },
     };
   } catch (e) {
